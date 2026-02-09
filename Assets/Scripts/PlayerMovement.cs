@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float checkRadius = 0.2f;
     public LayerMask groundLayer;
+    // public float autoRunSpeed = 2f;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         // 1. Horizontal Movement
         float moveInput = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        // rb.linearVelocity = new Vector2((moveInput * moveSpeed) + autoRunSpeed, rb.linearVelocity.y);
 
         // 2. Ground Check (Checks if the player is touching the 'Ground' layer)
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);

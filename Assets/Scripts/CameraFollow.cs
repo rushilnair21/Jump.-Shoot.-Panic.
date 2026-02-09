@@ -9,6 +9,9 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right*scrollSpeed*Time.deltaTime);
+        if (GameManager.I == null) return;
+
+        float s = GameManager.I.ScrollSpeed;
+        transform.Translate(Vector3.right * s * Time.deltaTime);
     }
 }
