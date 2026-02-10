@@ -6,6 +6,7 @@ public class CollectibleSpawner : MonoBehaviour
 
     [Header("Prefabs")]
     public GameObject coinPrefab;
+    public GameObject shootablePrefab;
 
     [Header("Spawn Settings")]
     public float spawnAheadDistance = 18f;
@@ -16,6 +17,8 @@ public class CollectibleSpawner : MonoBehaviour
     public float minY = -1.5f;
     public float maxY = 2.5f;
 
+    [Header("Difficulty")]
+    [Range(0, 1)] public float shootableChance = 0.3f;
     private float nextSpawnX;
 
     void Start()
@@ -42,10 +45,16 @@ public class CollectibleSpawner : MonoBehaviour
 
     void SpawnCoin(float x)
     {
-        if (coinPrefab == null) return;
+        GameObject prefabToSpawn = coinPrefab;
+        if (Random.value < shootableChance && shootablePrefab != null)
+        {
+            prefabToSpawn = shootablePrefab;
+        }
+
+        if (prefabToSpawn == null) return;
 
         float y = Random.Range(minY, maxY);
         Vector3 pos = new Vector3(x, y, 0f);
-        Instantiate(coinPrefab, pos, Quaternion.identity);
+        Instantiate(prefabToSpawn, pos, Quaternion.identity);
     }
 }

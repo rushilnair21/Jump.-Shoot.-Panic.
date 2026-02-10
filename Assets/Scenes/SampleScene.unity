@@ -1053,11 +1053,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleSpawner
   cameraTransform: {fileID: 519420032}
   coinPrefab: {fileID: 8552594730677571047, guid: f2a2dc9d3c8dc4f5cb844469567ac597, type: 3}
+  shootablePrefab: {fileID: 7027105830731157733, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
   spawnAheadDistance: 18
   minGap: 2.5
   maxGap: 5
   minY: -1.5
   maxY: 2.5
+  shootableChance: 0.5
 --- !u!4 &1443326090
 Transform:
   m_ObjectHideFlags: 0
@@ -1210,6 +1212,71 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &1992198321
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7373
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311006689400932595, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027105830731157733, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
+      propertyPath: m_Name
+      value: Shootable_Collectible
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a7f5a9ec494f9364db9f675775539ee9, type: 3}
 --- !u!1 &2081258687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1692,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  shootEffect: {fileID: 0}
 --- !u!1001 &1184342482103833484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1817,3 +1885,4 @@ SceneRoots:
   - {fileID: 1184342482103833484}
   - {fileID: 1255455558}
   - {fileID: 1443326090}
+  - {fileID: 1992198321}

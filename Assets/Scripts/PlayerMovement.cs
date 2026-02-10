@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     // public float autoRunSpeed = 2f;
 
+    public GameObject shootEffect;
+
     void Start()
     {
         // Get the Rigidbody component from the player object

@@ -4,14 +4,24 @@ public class PhysicalCollectible : MonoBehaviour
 {
     public int coinValue = 1;
 
+    private static int internalCoinCounter = 0;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger hit by: " + other.name);
+        UnityEngine.Debug.Log("Trigger hit by: " + other.name);
 
         if (!other.CompareTag("Player")) return;
         if (GameManager.I == null) return;
 
         GameManager.I.AddCoin(coinValue);
+
+        internalCoinCounter++;
+        if (internalCoinCounter >=2)
+        {
+            GameManager.I.ammo +=1;
+            internalCoinCounter = 0;
+            UnityEngine.Debug.Log("Ammo Refilled");
+        }
         Destroy(gameObject);
     }
 
