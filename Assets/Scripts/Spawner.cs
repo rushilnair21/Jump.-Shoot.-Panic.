@@ -6,15 +6,19 @@ public class Spawner : MonoBehaviour
 
     [Header("Prefabs")]
     public GameObject[] obstaclePrefabs; // block, fire
+    public GameObject floorPrefab;
 
     [Header("Spawn Settings")]
-    public float spawnAheadDistance = 18f;
-    public float groundY = -3.5f;
+    public float spawnAheadDistance = 25f;
+    public float groundY = -2.5f;
+    public float floorY = -3.4f;
+    public float floorWidth = 25f;
 
     public float minGap = 4f;
     public float maxGap = 8f;
 
     private float nextSpawnX;
+    private float nextFloorX;
 
     void Start()
     {
@@ -22,27 +26,36 @@ public class Spawner : MonoBehaviour
             cameraTransform = Camera.main.transform;
 
         nextSpawnX = cameraTransform.position.x + spawnAheadDistance;
+        nextFloorX = cameraTransform.position.x - 5f;
     }
 
     void Update()
     {
-        int c = (GameManager.I != null) ? GameManager.I.coins : 0;
-
-        float t = Mathf.Clamp01(c / 50f); // 0..1 by 50 coins
-
-        float curMinGap = Mathf.Lerp(maxGap, minGap, t); // gap shrinks
-        float curMaxGap = Mathf.Lerp(maxGap + 2f, maxGap, t);
-
+        
         if (cameraTransform == null) return;
-
         float camX = cameraTransform.position.x;
 
-        // Keep placing obstacles ahead of camera
+        while(nextFloorX < camX + spawnAheadDistance)
+        {
+            if (floorPrefab != null)
+            {
+                Instantiate(floorPrefab, new Vector3(nextFloorX, floorY, 0f), Quaternion.identity);
+            }
+            nextFloorX += floorWidth;
+        }
+
+        int c = (GameManager.I != null) ? GameManager.I.coins : 0;
+        float t = Mathf.Clamp01(c / 50f); 
+
+        float curMinGap = Mathf.Lerp(maxGap, minGap, t); 
+        float curMaxGap = Mathf.Lerp(maxGap + 2f, maxGap, t);
+
         while (nextSpawnX < camX + spawnAheadDistance)
         {
             SpawnOne(nextSpawnX);
             nextSpawnX += Random.Range(curMinGap, curMaxGap);
-        }
+        } 
+
     }
 
     void SpawnOne(float x)

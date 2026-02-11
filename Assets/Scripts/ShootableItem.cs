@@ -6,17 +6,25 @@ public class ShootableItem : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GameManager.I != null && GameManager.I.ammo > 0)
+        if (GameManager.I != null && GameManager.I.TrySpendAmmo(1))
         {
-            GameManager.I.ammo -= 1;
-            GameManager.I.AddCoin(scoreValue);
+            GameManager.I.AddCoin(scoreValue); 
             
-            UnityEngine.Debug.Log("Object Shot! Ammo left: " + GameManager.I.ammo);
-            Destroy(gameObject);
-        }
-        else
-        {
-            UnityEngine.Debug.Log("No ammo or GameManager missing!");
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            
+            if (playerObj != null)
+            {
+                LineRenderer lr = playerObj.GetComponent<LineRenderer>();
+                
+                if (lr != null)
+                {
+                    
+                    lr.SetPosition(0, playerObj.transform.position);
+                    lr.SetPosition(1, transform.position);
+                }
+            }
+
+            Destroy(gameObject); 
         }
     }
 }
