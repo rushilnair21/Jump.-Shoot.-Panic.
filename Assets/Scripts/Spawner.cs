@@ -4,6 +4,9 @@ public class Spawner : MonoBehaviour
 {
     public Transform cameraTransform;
 
+    [Header("References")]
+    public Transform roadTop;
+
     [Header("Prefabs")]
     public GameObject[] obstaclePrefabs; // block, fire
     public GameObject floorPrefab;
@@ -11,7 +14,7 @@ public class Spawner : MonoBehaviour
     [Header("Spawn Settings")]
     public float obstacleAheadDistance = 25f; 
     public float floorAheadDistance = 100f;
-    public float groundY = -2.5f;
+    public float groundY = -3.4f;
     public float floorY = -3.4f;
     public float floorWidth = 25f;
 
@@ -63,10 +66,33 @@ public class Spawner : MonoBehaviour
     {
         if (obstaclePrefabs == null || obstaclePrefabs.Length == 0) return;
 
-        int idx = Random.Range(0, obstaclePrefabs.Length);
-        GameObject prefab = obstaclePrefabs[idx];
+        GameObject prefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+        if (prefab == null) return;
 
-        Vector3 pos = new Vector3(x, groundY, 0f);
-        Instantiate(prefab, pos, Quaternion.identity);
+        float y = GetGroundedY(prefab);
+        Instantiate(prefab, new Vector3(x, y, 0f), Quaternion.identity);
+    }
+
+    float GetGroundedY(GameObject prefab)
+    {
+        // If roadTop is assigned, place obstacle so bottom touches road top
+        if (roadTop != null)
+        {
+            float roadTopY = roadTop.position.y;
+
+            // Figure out half-height using collider first (best), fallback to sprite
+            float halfH = 0.5f;
+
+            var col = prefab.GetComponent<Collider2D>();
+            if (col != null) halfH = col.bounds.extents.y;
+
+            var sr = prefab.GetComponent<SpriteRenderer>();
+            if (sr != null) halfH = Mathf.Max(halfH, sr.bounds.extents.y);
+
+            return roadTopY + halfH;
+        }
+
+        // fallback if roadTop not set
+        return groundY;
     }
 }

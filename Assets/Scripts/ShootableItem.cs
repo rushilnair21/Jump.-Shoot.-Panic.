@@ -6,7 +6,7 @@ public class ShootableItem : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GameManager.I != null && GameManager.I.TrySpendAmmo(1))
+        if (GameManager.I != null)
         {
             
             GameManager.I.AddCoin(scoreValue); 
