@@ -8,6 +8,7 @@ public class ShootableItem : MonoBehaviour
     {
         if (GameManager.I != null && GameManager.I.TrySpendAmmo(1))
         {
+            
             GameManager.I.AddCoin(scoreValue); 
             
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");

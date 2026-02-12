@@ -838,7 +838,8 @@ MonoBehaviour:
   - {fileID: 4419833823220031553, guid: baf9e6f22b9914d3ca647146b40f9247, type: 3}
   - {fileID: 5833994681582078941, guid: 8737763ff1ecd4057b2bb152476fe99d, type: 3}
   floorPrefab: {fileID: 2802305801994643029, guid: 687aad10ceed48f418f7b72b916a8f04, type: 3}
-  spawnAheadDistance: 18
+  obstacleAheadDistance: 18
+  floorAheadDistance: 100
   groundY: -2.5
   floorY: -3.4
   floorWidth: 25

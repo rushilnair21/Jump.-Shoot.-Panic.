@@ -9,7 +9,8 @@ public class Spawner : MonoBehaviour
     public GameObject floorPrefab;
 
     [Header("Spawn Settings")]
-    public float spawnAheadDistance = 25f;
+    public float obstacleAheadDistance = 25f; 
+    public float floorAheadDistance = 100f;
     public float groundY = -2.5f;
     public float floorY = -3.4f;
     public float floorWidth = 25f;
@@ -25,8 +26,8 @@ public class Spawner : MonoBehaviour
         if (cameraTransform == null)
             cameraTransform = Camera.main.transform;
 
-        nextSpawnX = cameraTransform.position.x + spawnAheadDistance;
-        nextFloorX = cameraTransform.position.x - 5f;
+        nextSpawnX = cameraTransform.position.x + obstacleAheadDistance;
+        nextFloorX = cameraTransform.position.x - 20f;
     }
 
     void Update()
@@ -35,7 +36,7 @@ public class Spawner : MonoBehaviour
         if (cameraTransform == null) return;
         float camX = cameraTransform.position.x;
 
-        while(nextFloorX < camX + spawnAheadDistance)
+        while(nextFloorX < camX + floorAheadDistance)
         {
             if (floorPrefab != null)
             {
@@ -50,7 +51,7 @@ public class Spawner : MonoBehaviour
         float curMinGap = Mathf.Lerp(maxGap, minGap, t); 
         float curMaxGap = Mathf.Lerp(maxGap + 2f, maxGap, t);
 
-        while (nextSpawnX < camX + spawnAheadDistance)
+        while (nextSpawnX < camX + obstacleAheadDistance)
         {
             SpawnOne(nextSpawnX);
             nextSpawnX += Random.Range(curMinGap, curMaxGap);
