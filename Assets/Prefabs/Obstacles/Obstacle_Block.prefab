@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7569021643619307853}
   - component: {fileID: 1427518444439904550}
   - component: {fileID: 150622029166203545}
-  - component: {fileID: -5870910421072262538}
   - component: {fileID: -8477567455937306076}
+  - component: {fileID: -1342329613248969397}
   m_Layer: 8
   m_Name: Obstacle_Block
   m_TagString: Untagged
@@ -140,18 +140,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-5870910421072262538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419833823220031553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c931e9ef4d5064783a6b0093fae0b2cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObstacleKill
 --- !u!114 &-8477567455937306076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,3 +154,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DestroyBehindCamera
   cameraTransform: {fileID: 0}
   destroyBehindDistance: 25
+--- !u!114 &-1342329613248969397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419833823220031553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eb57676f33846a4d9d52b257878ff02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverOnExit
