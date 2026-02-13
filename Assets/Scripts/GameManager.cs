@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public float baseScrollSpeed = 2f;
     public float speedIncreasePer10Coins = 0.5f;
 
+    public bool isGameOver = false;
+
     public float ScrollSpeed
     {
         get
@@ -31,6 +33,15 @@ public class GameManager : MonoBehaviour
         I = this;
     }
 
+    public void TriggerGameOver()
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        Debug.Log("GAME OVER!");
+
+        Time.timeScale = 0f; 
+    }
     public void AddCoin(int amount)
     {
         coins += amount;
